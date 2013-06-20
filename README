@@ -1,27 +1,20 @@
 README
 ======
 
-APL has written an OpenCV implementation of HMAX significantly faster than
-HMAX-MATLAB, particularly on multi-core machines. In this directory, you'll find
-the executable, "HMAX_FE", and related utilities:
+The OpenCV implementation of HMAX, supplied by APL.
 
-  - aplPatches2xmlPatches.m: convert APL patch struct to XML patch file
+  - bin: executable and MATLAB code for using HMAX-OCV. There's code to format
+    patch sets for APL and HMAX_FE, as well as to compute new C2 activations and
+    read them into the format typically produced by HMAX-MATLAB.
 
-  - featureExtractionShell.sh: a wrapper for HMAX_FE
-  
-  - HMAX_FE: the actual openCV implementation of HMAX, a binary executable
+  - images: a temporary directory used by hmaxOCV.m for storing resized images
+    while calculating C2 features.
 
-  - hmaxOCV.m: a MATLAB wrapper for HMAX_FE, generates a set of C2 activations
-
-  - matlabPatches2aplPatches.m: convert HMAX-MATLAB patch information to an APL
-    patch struct
+  - patchSets: patch-sets stored in the format necessary for HMAX-OCV. The *.mat
+    files are structs formatted for APL's use. The *.xml files are the resultant
+    patch sets, used by HMAX_FE. 
 
   - README: this file
 
-  - read_OpenCV_xml.m: APL-supplied utility for reading XML
-
-  - write_OpenCV_xml.m: APL-supplied utility for writing XML
-
-  - xmlC22matC2.m: read C2 responses for image files
-
-  - xmlSchema.txt: the definition of an APL patch struct.
+  - src: source code for compiling HMAX_FE, the executable that actually
+    produces C2 activations.

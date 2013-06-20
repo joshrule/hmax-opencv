@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Necessary Tools and Programs:
+
+Pedro A. Rodriguez, June 2012
+
+1. Download cmake-2.8.6-Linux-i386.tar.gz from:  http://www.cmake.org/files/v2.8/
+2. Download OpenCV-2.3.1a.tar.bz2 from http://sourceforge.net/projects/opencvlibrary/files/opencv-unix/
+3. Unzip the OpenCV and cmake tarballs (e.g. tar -xvf OpenCV-2.3.1a.tar.bz2) to desired directory
+4. Change directoy to the opencv directory, and do the following:
+	mkdir release
+	cd release
+	"cmakedir"/bin/cmake -D CMAKE_INSTALL_PREFIX="install_path" -D BUILD_NEW_PYTHON_SUPPORT=OFF ..
+
+where, "cmakedir" is the directory where you unzipped cmake and "install_path" is where you want to install the compiled OpenCV (e.g. ~/sandbox)
+5. Now run:
+	make
+	make install (you may need to do a: sudo make install)
+	
+6. OpenCV is now installed
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+HMAX Compiling instructions
+--> Feature Extraction:
+This section will describe how to set up and run an executable to extract C2 features for a directory of images.  A .xml file will be created per image (with the same image name + .xml) and will store the appropriate C2 features.  The .xml file can be read using OpenCV or Matlab (see scripts written by P. Rodriguez (APL)).
+
+1. Set appropriate paths in HMAX_FEATURE_EXTRACTION.make
+2. Open a terminal window and run (from the command line):
+make -f HMAX_FEATURE_EXTRACTION.make -B 
+3. Verify that "HMAX_FE" executable has been created
+4. Set up featureExtractionShell.sh by changing appropriate paths to executable, image directory, patches file path, and patches filename
+5. In the terminal window, run featureExtractionShell.sh (from the command line):
+./featureExtractionShell.sh
+6. Verify that xml files have been created in the image directory
+
+NOTE:
+1. Running the script several times for the same set of images will result in multiple copies of features written to the file
+2. Running the script with different patch files each time will result in additional feature vectors stored to the same .xml file
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+HOW TO READ EXTRACTED FEATURES IN MATLAB:
+
+1. See function how_to_read_xml_features.m in "images" folder.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Optional:  Mac OpenCV installation (08/2012)
+You have Snow Leopard, so we'll download XCode 3.
+We'll get the latest CMake too if you don't have it yet.
+
+We'll follow these steps (add this to your SelfHelp file):
+o Download opencv 2.4.2 from http://code.opencv.org/svn/opencv/trunk/opencv
+o Expand the tar package in your root directory to produce OpenCV-2.4.2
+o Create a temporary directory, e.g. "build" inside OpenCV-2.4.2. That's where CMake is going to generate Makefiles, Xcode, etc. project files as well the object files and output binaries. Y
+o Open the CMake GUI, and browse to indicate where the source files are (OpenCV-2.4.2) and where the binary files will be built (OpenCV-2.4.2/build).
+o Execute "Configure" to do the initial configuration, 
+o Then adjust any options. Among the options, I turn on Quicktime, and Python support in case I decide to use that later. I keep IPP and Qt off, as they need other packages.
+o Then press "Configure" again. and then press "Generate". 
+
+o Done with CMake. Then open Terminal, cd to OpenCV-2.4.2/build (not its parent directory).
+
+o Use sudo make all
+o Use sudo make install, not make install
+
+Daniel
+
