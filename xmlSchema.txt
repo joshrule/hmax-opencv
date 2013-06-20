@@ -1,0 +1,48 @@
+XML Schema:
+
+The following fields are needed in no particular 
+order (exact names must be used):
+
+%For S1 Calculations:
+1.filters -  Matrix of Gabor filters of size max_fSiz x num_filters,
+where max_fSiz is the length of the largest filter and num_filters the
+total number of filters. Column j of filters matrix contains a n_jxn_j
+filter (reshaped as a column vector and padded with zeros).
+
+2.fSiz - Vector of size num_filters containing the various filter
+sizes. fSiz(j) = n_j, if filters j is n_j x n_j.
+
+%For C1 calculations
+3. c1ScaleSS  - Vector defining the scale bands, i.e. a group of filter
+sizes over which a local max is taken to get the C1 unit responses,
+e.g. c1ScaleSS = [1 k num_filters+1] means 2 scale bands, the first
+one contains filters(:,1:k-1) and the second one contains
+filters(:,k:num_filters). If N pooling bands, c1ScaleSS should be of
+length N+1.
+
+4. c1SpaceSS - Vector defining the spatial pooling range for each scale
+band, i.e. c1SpaceSS(i) = m_i means that each C1 unit response in band
+i is obtained by taking a max over a local neighborhood of m_ixm_i S1
+units. If N bands then c1SpaceSS should be of size N.
+
+5. c1OL - Scalar value defining the overlap between C1 units. In scale
+band i, the C1 unit responses are computed every c1Space(i)/c1OL.
+
+6. s1c1suppress - Vector or scalar of S1/C1 suppression thresholds. C1 response will
+be calculated using each suppression threshold. Usually use 0 to disable.
+
+%For S2C2 layer:
+%Various cPatches matrices can be used and the C2 feature vector obtained 
+%from each one of them concatenated to form a single C2 feature vector.
+
+7. num_patches - number of cPatches matrices, see below.
+
+8. cPatches_# (where # is and index:1,2,...) - are the prototype (patches)
+   to be used in the extraction  of s2.  Each patch of size [n,n,nfilts] is 
+   stored as a column in cPatches_#, which has itself a size of 
+   [n*n*nfilts, n_patches];
+   
+9. patchSizes - is a matrix where each column corresponds to the [n,n] value of 
+  its corresponding cPatches_# matrix. nfilts is obtained from the c1 layer.
+  Example the first column of patchSizes can contain the values [4,4], which tell us
+  that the cPatches_1 has the following size:  [4*4*nfilts, n_patches].
