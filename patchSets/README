@@ -1,0 +1,6 @@
+README for 'patchSets'
+======================
+
+This directory should be empty, other than this README. It's a good place to
+store the patch files needed to work with HMAX-OCV, but because they're large
+binary files, none are included with the repository.

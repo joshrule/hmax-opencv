@@ -1,4 +1,6 @@
 bin/HMAX_FE
 hmaxOCV.log
 images/*
-!images/
+!images/README
+patchSets/*
+!patchSets/README

@@ -1,0 +1,5 @@
+README for 'images'
+===================
+
+This directory should be empty, other than this README. It's required by
+hmaxOCV.m as a place to store temporary images. See hmaxOCV.m for details.

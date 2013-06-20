@@ -9,7 +9,8 @@ the executable, "HMAX_FE", and related utilities:
 
   - featureExtractionShell.sh: a wrapper for HMAX_FE
   
-  - HMAX_FE: the actual openCV implementation of HMAX, a binary executable
+  - HMAX_FE: the actual openCV implementation of HMAX, a binary executable. If
+    not found, recompile it via the code in '../src/'.
 
   - hmaxOCV.m: a MATLAB wrapper for HMAX_FE, generates a set of C2 activations
 
