@@ -23,10 +23,11 @@ function hmaxOCV(imgList,patchFile,hmaxHome,maxSize,nProcs)
         imgDirs(iImg) = mod(iImg,nProcs);
         [fa,fb,fc] = fileparts(imgList{iImg});
         newImgFile{iImg} = [hmaxHome 'images/' num2str(imgDirs(iImg)) '/' ...
-          fb lower(fc)];
+          fb '.bmp'];
         while ~exist(newImgFile{iImg},'file')
-            imwrite(uint8(resizeImage(double(imread(imgList{iImg})), ...
-              maxSize)), newImgFile{iImg}, 'Quality',100);
+	    system(['cp ' imgList{iImg} ' ' newImgFile{iImg}]);
+%           imwrite(uint8(resizeImage(double(imread(imgList{iImg})), ...
+%             maxSize)), newImgFile{iImg},'bmp');
         end
     end
 
