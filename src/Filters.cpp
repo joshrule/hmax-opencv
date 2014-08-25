@@ -506,8 +506,8 @@ void mymaxfilter(cv::Mat& Im, cv::Scalar poolrange, cv::Mat& dst) {
 			
             i=therowindices[ct1];
             j=thecolindices[ct2];
-            cv::Range range1(i,min(i+fullpool+1,numrows));
-			cv::Range range2(j,min(j+fullpool+1,numcols));
+            cv::Range range1(i,min(i+fullpool,numrows)); // JSR corrected off-by-1: Aug 2014
+			cv::Range range2(j,min(j+fullpool,numcols)); // JSR corrected off-by-1: Aug 2014
 			//cout << i << "," << min(i+fullpool+1,numcols) << endl;          
 			//cout << j << "," << min(j+fullpool+1,numcols) << endl;
 			cv::Range ranges[] = {range1,range2};

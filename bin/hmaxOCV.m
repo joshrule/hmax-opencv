@@ -1,10 +1,11 @@
 function hmaxOCV(imgList,patchFile,hmaxHome,maxSize,nProcs)
-% hmaxOCV(imgList,patchFile,maxSize,nProcs)
+% hmaxOCV(imgList,patchFile,hmaxHome,maxSize,nProcs)
 %
 % generate a set of HMAX-OCV activations
 %
 % imgList: a cell array, the names of images to process
 % patchFile: a char array (string), the name of the XML file holding patch info
+% hmaxHome: string, top-level directory of HMAX-OCV repository
 % nProcs: the number of processes to use (i.e. number of processors)
 %
 % note: requires 'cp','find','xargs','mkdir', and 'echo'
@@ -26,8 +27,8 @@ function hmaxOCV(imgList,patchFile,hmaxHome,maxSize,nProcs)
           fb '.bmp'];
         while ~exist(newImgFile{iImg},'file')
 	    system(['cp ' imgList{iImg} ' ' newImgFile{iImg}]);
-%           imwrite(uint8(resizeImage(double(imread(imgList{iImg})), ...
-%             maxSize)), newImgFile{iImg},'bmp');
+        imwrite(uint8(resizeImage(double(imread(imgList{iImg})),maxSize)), ...
+            newImgFile{iImg},'bmp');
         end
     end
 
